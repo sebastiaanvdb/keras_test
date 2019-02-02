@@ -7,8 +7,8 @@ from datetime import datetime
 print("loading model")
 now = datetime.now()
 model = load_model("./models/20190128103330_0.3/cableclassifier_20190128103330_0.3.h5")
-time_delta = now - datetime.now()
-print("model loaded in {} milliseconds".format((time_delta.total_seconds()*1000)))
+time_delta = datetime.now() - now
+print("model loaded in {}".format((time_delta.total_seconds() * 1000)))
 img_arrays = []
 filenames = []
 print("loading images")
@@ -21,5 +21,5 @@ for i in range(1000):
     for i in range(len(img_arrays)):
         now = datetime.now()
         print('Prediction for image {}: {}'.format(filenames[i], model.predict(np.expand_dims(img_arrays[i], axis=0))))
-        time_delta = now - datetime.now()
+        time_delta = datetime.now() - now
         print('It took {} milliseconds'.format((time_delta.total_seconds() * 1000)))
